@@ -43,9 +43,9 @@ fun RegistrationScreen(){
 
 
     Scaffold(
-        modifier = Modifier.fillMaxSize()) { innerPadding ->
+        modifier = Modifier.fillMaxSize()) { contentPadding ->
 
-        Column(Modifier.padding(innerPadding).fillMaxSize()){
+        Column(Modifier.padding(contentPadding).fillMaxSize()){
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -101,6 +101,7 @@ fun RegistrationScreen(){
                 Spacer(modifier = Modifier.height(8.dp))
 
                 OutlinedTextField(
+                    modifier = Modifier.padding(horizontal = 35.dp),
                     value = name,
                     onValueChange = { name = it },
                     label = {
