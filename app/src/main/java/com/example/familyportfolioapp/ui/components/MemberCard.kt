@@ -1,6 +1,7 @@
 package com.example.familyportfolioapp.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +24,7 @@ import com.example.familyportfolioapp.R
 import com.example.familyportfolioapp.data.model.Member
 
 @Composable
-fun MemberCard(member: Member) {
+fun MemberCard(member: Member, onMemberClicked: () -> Unit) {
     Spacer(modifier = Modifier.height(20.dp))
 
     Row(
@@ -42,7 +43,9 @@ fun MemberCard(member: Member) {
 
         Spacer(modifier = Modifier.width(10.dp))
 
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onMemberClicked() }) {
 
             Text(
                 text = member.firstName + " " + member.name,

@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.rememberNavController
+import com.example.familyportfolioapp.navigation.AppNavHost
 import com.example.familyportfolioapp.ui.theme.FamilyPortfolioAppTheme
-import com.example.familyportfolioapp.ui.screen.MemberListScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FamilyPortfolioAppTheme {
-                MemberListScreen()
+                AppNavHost(navHostController = rememberNavController())
             }
         }
     }

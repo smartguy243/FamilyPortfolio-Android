@@ -30,13 +30,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.familyportfolioapp.R
+import com.example.familyportfolioapp.data.local.Database
+import com.example.familyportfolioapp.navigation.AppScreen
+import java.util.UUID
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MemberDetailsScreen() {
+fun MemberDetailsScreen(navHostController: NavHostController, memberId: UUID) {
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+
+    val member = Database.members.first{member -> member.id == memberId}
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -55,7 +61,9 @@ fun MemberDetailsScreen() {
                 },
                 navigationIcon = {
                     IconButton(
-                        onClick = {}) {
+                        onClick = {
+                            navHostController.popBackStack()
+                        }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "back"
@@ -64,7 +72,9 @@ fun MemberDetailsScreen() {
                 },
                 actions = {
                     IconButton(
-                        onClick = {}) {
+                        onClick = {
+                            navHostController.navigate(AppScreen.MemberRegistration.route)
+                        }) {
                         Icon(
                             modifier = Modifier.size(25.dp),
                             painter = painterResource(R.drawable.edit),
@@ -94,7 +104,7 @@ fun MemberDetailsScreen() {
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "Prenom Nom",
+                text = member.firstName + " " + member.name,
                 fontSize = 35.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center)
@@ -102,7 +112,7 @@ fun MemberDetailsScreen() {
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
-                text = "Rang",
+                text = member.range,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.W500,
                 fontStyle = FontStyle.Italic,

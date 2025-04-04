@@ -32,10 +32,12 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.familyportfolioapp.R
+import com.example.familyportfolioapp.navigation.AppScreen
 
 @Composable
-fun MemberRegistrationScreen(){
+fun MemberRegistrationScreen(navHostController: NavHostController){
 
     var firstName by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
@@ -52,7 +54,9 @@ fun MemberRegistrationScreen(){
             Row(Modifier.fillMaxWidth().padding(end = 20.dp),
                 horizontalArrangement = Arrangement.Absolute.Right) {
                 Button(
-                    onClick = { },
+                    onClick = {
+                        navHostController.navigate(AppScreen.MemberList.route)
+                    },
                     shape = RoundedCornerShape(12.dp),
                     enabled = true,
                 ) {
@@ -128,7 +132,9 @@ fun MemberRegistrationScreen(){
                 Spacer(modifier = Modifier.height(25.dp))
 
                 Button(
-                    onClick = { },
+                    onClick = {
+                        navHostController.navigate(AppScreen.MemberList.route)
+                    },
                     shape = RoundedCornerShape(12.dp),
                     enabled = (firstName.isNotEmpty() && name.isNotEmpty() && range.isNotEmpty()),
                 ) {
