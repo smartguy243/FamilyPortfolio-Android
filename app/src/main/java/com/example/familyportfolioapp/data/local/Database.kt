@@ -20,7 +20,7 @@ object Database {
         ),
         Member(
             id = UUID.fromString("1ba7b812-9dad-11d1-80b4-00c04fd430c8"),
-            firstName = "Doux Salem",
+            firstName = "Salem",
             name = "Kayembe",
             range = "Frère"
         ),

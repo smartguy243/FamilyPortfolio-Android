@@ -1,4 +1,4 @@
-package com.example.familyportfolioapp.ui.theme.screen
+package com.example.familyportfolioapp.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.example.familyportfolioapp.R
 
 @Composable
-fun RegistrationScreen(){
+fun MemberRegistrationScreen(){
 
     var firstName by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }

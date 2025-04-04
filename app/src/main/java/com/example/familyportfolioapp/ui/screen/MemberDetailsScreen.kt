@@ -1,4 +1,4 @@
-package com.example.familyportfolioapp.ui.theme.screen
+package com.example.familyportfolioapp.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

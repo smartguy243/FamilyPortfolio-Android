@@ -4,8 +4,8 @@ import java.util.UUID
 
 class Member (
 
-    var id: UUID? = null,
-    var firstName: String? = null,
-    var name: String? = null,
-    var range: String? = null
+    var id: UUID,
+    var firstName: String,
+    var name: String,
+    var range: String
 )
