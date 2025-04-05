@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.familyportfolioapp.ui.screen.AnimatedSplashScreen
 import com.example.familyportfolioapp.ui.screen.MemberDetailsScreen
 import com.example.familyportfolioapp.ui.screen.MemberListScreen
 import com.example.familyportfolioapp.ui.screen.MemberRegistrationScreen
@@ -14,7 +15,11 @@ import java.util.UUID
 @Composable
 fun AppNavHost(navHostController: NavHostController) {
 
-    NavHost(startDestination= AppScreen.MemberRegistration.route, navController = navHostController){
+    NavHost(startDestination= AppScreen.AnimatedSplash.route, navController = navHostController){
+
+        composable(route = AppScreen.AnimatedSplash.route){
+            AnimatedSplashScreen(navHostController)
+        }
 
         composable(route = AppScreen.MemberRegistration.route){
             MemberRegistrationScreen(navHostController)

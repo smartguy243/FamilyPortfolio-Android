@@ -1,5 +1,6 @@
 package com.example.familyportfolioapp.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +24,7 @@ import com.example.familyportfolioapp.R
 import com.example.familyportfolioapp.data.local.Database
 import com.example.familyportfolioapp.navigation.AppScreen
 import com.example.familyportfolioapp.ui.components.MemberCard
+import com.example.familyportfolioapp.ui.theme.LightGrey3
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,7 +67,8 @@ fun MemberListScreen(navHostController: NavHostController) {
         LazyColumn(
             modifier = Modifier
                 .padding(contentPadding)
-                .fillMaxWidth()) {
+                .fillMaxWidth()
+                .background(LightGrey3)) {
 
             items(members){ member ->
 

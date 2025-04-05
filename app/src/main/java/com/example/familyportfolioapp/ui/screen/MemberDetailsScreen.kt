@@ -1,6 +1,7 @@
 package com.example.familyportfolioapp.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,6 +35,7 @@ import androidx.navigation.NavHostController
 import com.example.familyportfolioapp.R
 import com.example.familyportfolioapp.data.local.Database
 import com.example.familyportfolioapp.navigation.AppScreen
+import com.example.familyportfolioapp.ui.theme.LightGrey3
 import java.util.UUID
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,7 +91,8 @@ fun MemberDetailsScreen(navHostController: NavHostController, memberId: UUID) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(contentPadding),
+                .padding(contentPadding)
+                .background(LightGrey3),
             horizontalAlignment = Alignment.CenterHorizontally){
 
             Spacer(modifier = Modifier.height(35.dp))

@@ -1,6 +1,7 @@
 package com.example.familyportfolioapp.ui.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,10 +15,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,13 +31,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.familyportfolioapp.R
 import com.example.familyportfolioapp.navigation.AppScreen
+import com.example.familyportfolioapp.ui.theme.LightGrey3
 
 @Composable
 fun MemberRegistrationScreen(navHostController: NavHostController){
@@ -47,7 +53,10 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
     Scaffold(
         modifier = Modifier.fillMaxSize()) { contentPadding ->
 
-        Column(Modifier.padding(contentPadding).fillMaxSize()){
+        Column(modifier = Modifier
+                            .padding(contentPadding)
+                            .background(LightGrey3)
+                            .fillMaxSize()){
 
             Spacer(modifier = Modifier.height(20.dp))
 
@@ -57,6 +66,12 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
                     onClick = {
                         navHostController.navigate(AppScreen.MemberList.route)
                     },
+                    colors = ButtonColors(
+                        containerColor = Color.DarkGray,
+                        contentColor = Color.White,
+                        disabledContainerColor = Color.LightGray,
+                        disabledContentColor = Color.Gray
+                    ),
                     shape = RoundedCornerShape(12.dp),
                     enabled = true,
                 ) {
@@ -86,6 +101,8 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
                 Text(text = "Ajouter un membre",
                     textAlign = TextAlign.Center,
                     fontSize = 30.sp,
+                    fontWeight = FontWeight.W500,
+                    fontFamily = FontFamily.Serif,
                     color = Color.Black
                 )
 
@@ -97,8 +114,14 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
                     label = {
                         Text(
                             text = "Prenom",
-                            fontStyle = FontStyle.Italic)
+                            fontStyle = FontStyle.Italic,
+                            fontWeight = FontWeight.W600)
                     },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                        errorContainerColor = Color.Red),
                     singleLine = true
                 )
 
@@ -111,8 +134,15 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
                     label = {
                         Text(
                             text = "Nom",
-                            fontStyle = FontStyle.Italic)
+                            fontStyle = FontStyle.Italic,
+                            fontWeight = FontWeight.W600)
                     },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                        errorContainerColor = Color.Red
+                    ),
                     singleLine = true
                 )
 
@@ -124,8 +154,15 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
                     label = {
                         Text(
                             text = "Rang",
-                            fontStyle = FontStyle.Italic)
+                            fontStyle = FontStyle.Italic,
+                            fontWeight = FontWeight.W600)
                     },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = Color.White,
+                        focusedContainerColor = Color.White,
+                        disabledContainerColor = Color.Gray,
+                        errorContainerColor = Color.Red
+                    ),
                     singleLine = true
                 )
 
@@ -135,6 +172,12 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
                     onClick = {
                         navHostController.navigate(AppScreen.MemberList.route)
                     },
+                    colors = ButtonColors(
+                        containerColor = Color.DarkGray,
+                        contentColor = Color.White,
+                        disabledContainerColor = Color.LightGray,
+                        disabledContentColor = Color.Gray
+                    ),
                     shape = RoundedCornerShape(12.dp),
                     enabled = (firstName.isNotEmpty() && name.isNotEmpty() && range.isNotEmpty()),
                 ) {
@@ -146,7 +189,7 @@ fun MemberRegistrationScreen(navHostController: NavHostController){
 
             Spacer(modifier = Modifier.height(100.dp))
 
-            Row(Modifier.fillMaxWidth().padding(end = 20.dp),
+            Row(modifier = Modifier.fillMaxWidth().padding(end = 20.dp),
                 horizontalArrangement = Arrangement.Absolute.Right){
                 Icon(
                     modifier = Modifier
