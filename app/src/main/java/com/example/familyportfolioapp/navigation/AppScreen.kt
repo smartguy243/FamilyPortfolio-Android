@@ -1,9 +1,14 @@
-package com.example.familyportfolioapp.navigation
+package com.godsonpeya.myfamily.navigation
 
-sealed class AppScreen(var route: String) {
+sealed class AppScreen(val route: String) {
 
-    data object AnimatedSplash:AppScreen("animated_splash")
-    data object MemberRegistration:AppScreen("member_registration")
-    data object MemberList:AppScreen("member_list")
-    data object MemberDetails:AppScreen("member_details")
+    data object Splash : AppScreen("splash")
+
+    data object MemberList : AppScreen("member_list")
+
+    data object Detail : AppScreen("detail/{memberId}") {
+        fun createRoute(memberId: String) = "detail/$memberId"
+    }
+
+
 }

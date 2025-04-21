@@ -53,7 +53,7 @@ fun Splash(logoAnimation: Float,  textAnimation: Float) {
 
             Icon(
                 modifier = Modifier
-                    .size(120.dp)
+                    .size(100.dp)
                     .alpha(alpha = logoAnimation),
                 painter = painterResource(R.drawable.app_logo),
                 contentDescription = "App_logo"

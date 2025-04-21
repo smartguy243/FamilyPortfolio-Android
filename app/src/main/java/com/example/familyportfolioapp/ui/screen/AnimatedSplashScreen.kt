@@ -9,8 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
-import com.example.familyportfolioapp.navigation.AppScreen
 import com.example.familyportfolioapp.ui.components.Splash
+import com.godsonpeya.myfamily.navigation.AppScreen
 import kotlinx.coroutines.delay
 
 @Composable
@@ -34,7 +34,7 @@ fun AnimatedSplashScreen(navHostController: NavHostController) {
         startAnimation = true
         delay(4000)
         navHostController.popBackStack()
-        navHostController.navigate(AppScreen.MemberRegistration.route)
+        navHostController.navigate(AppScreen.MemberList.route)
     }
 
     Splash(logoAnimation = logoAnimation.value, textAnimation = textAnimation.value)

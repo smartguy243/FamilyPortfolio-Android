@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,48 +22,46 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.familyportfolioapp.R
-import com.example.familyportfolioapp.data.model.Member
+import com.example.familyportfolioapp.data.remote.model.MembersItem
 
 @Composable
-fun MemberCard(member: Member, onMemberClicked: () -> Unit) {
-    Spacer(modifier = Modifier.height(20.dp))
+fun MemberCard(member: MembersItem, onMemberClicked: () -> Unit) {
+    Spacer(modifier = Modifier.height(10.dp))
 
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    Column {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onMemberClicked() },
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
-        Spacer(modifier = Modifier.width(15.dp))
+            Spacer(modifier = Modifier.width(15.dp))
 
-        Image(
-            painter = painterResource(R.drawable.profile_pic),
-            modifier = Modifier.size(100.dp),
-            contentDescription = "profile_pic"
-        )
-
-        Spacer(modifier = Modifier.width(10.dp))
-
-        Column(modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { onMemberClicked() }) {
-
-            Text(
-                text = member.firstName + " " + member.name,
-                fontSize = 25.sp,
-                fontWeight = FontWeight.Bold
+            Image(
+                painter = painterResource(R.drawable.profile_pic),
+                modifier = Modifier.size(70.dp),
+                contentDescription = "profile_pic"
             )
 
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.width(10.dp))
 
-            Text(
-                text = member.range,
-                fontSize = 20.sp,
-                fontStyle = FontStyle.Italic,
-                color = Color.DarkGray
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()) {
 
-            Spacer(modifier = Modifier.height(10.dp))
+                Text(
+                    text = member.firstName + " " + member.lastName,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        HorizontalDivider(thickness = 1.dp)
+
     }
 }
