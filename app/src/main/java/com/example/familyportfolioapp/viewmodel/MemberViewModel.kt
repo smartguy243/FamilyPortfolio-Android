@@ -17,7 +17,6 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
     ViewModel() {
 
     private var _members = MutableStateFlow(emptyList<MembersItem>())
-
     val members: StateFlow<List<MembersItem>> = _members
 
     private var _member = MutableStateFlow<MembersItem?>(null)
@@ -31,25 +30,31 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
 
     fun getMember(id: String) {
         viewModelScope.launch {
-            _member.value =  memberRepository.getMember(id)
+            _member.value = memberRepository.getMember(id)
         }
     }
 
     fun addMember(member: MembersItemRq) {
         viewModelScope.launch {
             memberRepository.addMember(member)
+            // Rafraîchir la liste des membres après l'ajout
+            getMembers()
         }
     }
 
     fun updateMember(id: String, member: MembersItemRq) {
         viewModelScope.launch {
             memberRepository.updateMember(id, member)
+            // Rafraîchir la liste des membres après la mise à jour
+            getMembers()
         }
     }
 
     fun deleteMember(id: String) {
         viewModelScope.launch {
             memberRepository.deleteMember(id)
+            // Rafraîchir la liste des membres après la suppression
+            getMembers()
         }
     }
 }

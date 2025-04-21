@@ -16,14 +16,14 @@ class MemberRepository @Inject constructor(
 
     suspend fun getMembers(): List<MembersItem> {
         return try {
-            val remoteMember = familyService.getMembers()
-
-            memberDao.insertMembers(*remoteMember.map { it.toMember() }.toTypedArray())
-            memberDao.getMembers()
+            val remoteMembers = familyService.getMembers()
+            // Insérer les membres distants dans la base locale
+            memberDao.insertMembers(*remoteMembers.map { it.toMember() }.toTypedArray())
+            memberDao.getMembers().map { it.toMembersItem() }
         } catch (e: Exception) {
             Log.e(MemberRepository::class.java.toString(), "Il n'y a pas d'internet ${e.message}")
-            memberDao.getMembers()
-        }.map { it.toMembersItem() }
+            memberDao.getMembers().map { it.toMembersItem() }
+        }
     }
 
     suspend fun getMember(id: String): MembersItem {
@@ -31,17 +31,23 @@ class MemberRepository @Inject constructor(
     }
 
     suspend fun addMember(member: MembersItemRq): MembersItem {
-        return familyService.saveMember(member)
+        val newMember = familyService.saveMember(member)
+        // Ajouter le nouveau membre dans la base locale
+        memberDao.insertMembers(newMember.toMember())
+        return newMember
     }
 
-    suspend fun updateMember(
-        id: String,
-        member: MembersItemRq
-    ): MembersItem {
-        return familyService.updateMember(id, member)
+    suspend fun updateMember(id: String, member: MembersItemRq): MembersItem {
+        val updatedMember = familyService.updateMember(id, member)
+        // Mettre à jour le membre dans la base locale
+        memberDao.updateMember(updatedMember.toMember())
+        return updatedMember
     }
 
     suspend fun deleteMember(id: String): String {
-        return familyService.deleteMember(id)
+        val result = familyService.deleteMember(id)
+        // Supprimer le membre de la base locale
+        memberDao.deleteMember(memberDao.getMember(id))
+        return result
     }
 }
