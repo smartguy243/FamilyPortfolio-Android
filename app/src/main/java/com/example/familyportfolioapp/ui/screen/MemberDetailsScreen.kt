@@ -86,6 +86,7 @@ fun DetailScreen(
                     IconButton(
                         onClick = {
                             navHostController.popBackStack()
+                            viewModel.getMembers()
                         }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -156,6 +157,7 @@ fun DetailScreen(
                             lastName = lastname
                         )
                     )
+                    viewModel.getMembers()
                     viewModel.getMember(id = memberId)
                     openEditDialog = !openEditDialog
                 })
