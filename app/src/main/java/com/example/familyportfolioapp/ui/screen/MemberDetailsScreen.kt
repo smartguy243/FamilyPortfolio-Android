@@ -168,6 +168,7 @@ fun DetailScreen(
                 },
                 onConfirm = {
                     viewModel.deleteMember(id = memberId)
+                    openAlertDialog = !openAlertDialog
                     navHostController.popBackStack()
                 })
         }
