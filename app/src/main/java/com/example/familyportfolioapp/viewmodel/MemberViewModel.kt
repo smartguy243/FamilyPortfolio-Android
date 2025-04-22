@@ -1,5 +1,6 @@
 package com.example.familyportfolioapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.familyportfolioapp.data.remote.model.MembersItem
@@ -37,7 +38,6 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
     fun addMember(member: MembersItemRq) {
         viewModelScope.launch {
             memberRepository.addMember(member)
-            // Rafraîchir la liste des membres après l'ajout
             getMembers()
         }
     }
@@ -45,16 +45,17 @@ class MemberViewModel @Inject constructor(private val memberRepository: MemberRe
     fun updateMember(id: String, member: MembersItemRq) {
         viewModelScope.launch {
             memberRepository.updateMember(id, member)
-            // Rafraîchir la liste des membres après la mise à jour
             getMembers()
         }
     }
 
     fun deleteMember(id: String) {
         viewModelScope.launch {
-            memberRepository.deleteMember(id)
-            // Rafraîchir la liste des membres après la suppression
-            getMembers()
+            try {
+                memberRepository.deleteMember(id)
+                _members.value = _members.value.filter { it.id != id }
+            } catch (e: Exception) {
+                Log.e("MemberViewModel","Error deleting member", e)           }
         }
     }
 }

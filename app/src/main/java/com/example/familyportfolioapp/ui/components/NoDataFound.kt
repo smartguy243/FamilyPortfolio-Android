@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 fun NoDataFound() {
     Box {
         Text(
-            text = "No members found",
+            text = "No member found",
             modifier = Modifier.Companion.align(Alignment.Companion.Center)
         )
     }

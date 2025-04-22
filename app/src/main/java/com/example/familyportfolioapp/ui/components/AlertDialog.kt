@@ -36,7 +36,6 @@ fun MemberAlertDialog(
     onCancel: () -> Unit = {},
     onConfirm: () -> Unit = {}
 ) {
-    // Animation d'apparition du dialogue
     val animatedProgress by animateFloatAsState(
         targetValue = 2f,
         animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing)
@@ -46,7 +45,7 @@ fun MemberAlertDialog(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .graphicsLayer(alpha = animatedProgress), // Animation d'opacité
+                .graphicsLayer(alpha = animatedProgress),
             shape = RoundedCornerShape(16.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
             colors = CardDefaults.cardColors(
